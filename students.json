@@ -1,0 +1,206 @@
+[
+  {
+    "id": "1",
+    "name": "Akshit",
+    "course": "BCA · 1st year",
+    "roll": "1260755010",
+    "assets": [
+      {
+        "url": "/poster-1.pdf",
+        "type": "pdf"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Lalita Sharma",
+    "course": "BCA AI · 1st year",
+    "roll": "1264464005",
+    "assets": [
+      {
+        "url": "/poster-2.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Shail Kumar",
+    "course": "BCA · 2nd year",
+    "roll": "1250755117",
+    "assets": [
+      {
+        "url": "/poster-3.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Adarsh Maurya",
+    "course": "BCA AI · 1st year",
+    "roll": "1264464002",
+    "assets": [
+      {
+        "url": "/poster-4.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Arshpreet Kaur",
+    "course": "BCA AI · 1st year",
+    "roll": "1260755039",
+    "assets": [
+      {
+        "url": "/poster-5.pdf",
+        "type": "pdf"
+      },
+      {
+        "url": "/poster-6.pdf",
+        "type": "pdf"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Sukhdev Nath Alias Suraj",
+    "course": "BCA · 1st year",
+    "roll": "1260755003",
+    "assets": [
+      {
+        "url": "/poster-7.png",
+        "type": "png"
+      },
+      {
+        "url": "/poster-10.png",
+        "type": "png"
+      },
+      {
+        "url": "/poster-11.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Priya Saini",
+    "course": "BSc CS",
+    "roll": "1250352005",
+    "assets": [
+      {
+        "url": "/poster-8.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Dalbir Kaur",
+    "course": "BSc CS · 3rd year",
+    "roll": "1240352020",
+    "assets": [
+      {
+        "url": "/poster-9.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "name": "Rajat Sharma",
+    "course": "BCA · 2nd year",
+    "roll": "1250755111",
+    "assets": [
+      {
+        "url": "/poster-12.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "name": "Priti",
+    "course": "BCA AI",
+    "roll": "1264464041",
+    "assets": [
+      {
+        "url": "/poster-13.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "name": "Kartik",
+    "course": "BCA AI · 1st year",
+    "roll": "1264464013",
+    "assets": [
+      {
+        "url": "/poster-14.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "name": "Ayush Arora",
+    "course": "Details pending",
+    "roll": "",
+    "assets": [
+      {
+        "url": "/poster-15.pdf",
+        "type": "pdf"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "name": "Vandana",
+    "course": "BSc CS",
+    "roll": "1250352012",
+    "assets": [
+      {
+        "url": "/poster-16.jpg",
+        "type": "jpg"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "name": "Prachi Sharma",
+    "course": "BCA · 1st year",
+    "roll": "1260755006",
+    "assets": [
+      {
+        "url": "/poster-17.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "name": "Yashvi",
+    "course": "BSc Physical Science",
+    "roll": "1240349019",
+    "assets": [
+      {
+        "url": "/poster-18.png",
+        "type": "png"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "name": "Navpreet Kaur",
+    "course": "BSc Physical Science",
+    "roll": "1240349009",
+    "assets": [
+      {
+        "url": "/poster-19.pdf",
+        "type": "pdf"
+      }
+    ]
+  }
+]

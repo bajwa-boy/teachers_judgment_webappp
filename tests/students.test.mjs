@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initialState,mutate,ranking} from '../logic.mjs';
+const roster=[{id:'1',name:'A',course:'BCA',roll:'001',assets:[{url:'/a.pdf',type:'pdf'}]},{id:'2',name:'B',course:'BSc',roll:'002',assets:[{url:'/b.png',type:'png'}]}];
+function setup(){return {...initialState(),students:structuredClone(roster)};}
+const newcomer={id:'3',name:'C',course:'BCA',roll:'003',assets:[{url:'/c.pdf',type:'pdf'}]};
+test('adds a persistent entry and rejects duplicate rolls and missing posters',()=>{const s=setup();mutate(s,{type:'student-add',student:newcomer},roster);assert.equal(s.students.length,3);assert.throws(()=>mutate(s,{type:'student-add',student:{...newcomer,id:'4'}},roster));assert.throws(()=>mutate(s,{type:'student-add',student:{...newcomer,id:'4',roll:'004',assets:[]}},roster));});
+test('editing metadata preserves poster files and scores',()=>{const s=setup();s.scores.girdhar={'1':[1,2,3,4,5,6,7]};mutate(s,{type:'student-update',student:{...roster[0],name:'Corrected',assets:[]}},roster);assert.equal(s.students[0].name,'Corrected');assert.deepEqual(s.students[0].assets,roster[0].assets);assert.equal(s.scores.girdhar['1'][0],1);});
+test('deletion archives student and scores and excludes entry from ranking',()=>{const s=setup();for(const j of s.judges)s.scores[j.id]={'1':[1,2,3,4,5,6,7],'2':[2,3,4,5,6,7,8]};mutate(s,{type:'student-delete',id:'2',deletedAt:'test'},roster);assert.equal(s.students.length,1);assert.equal(s.archivedStudents[0].id,'2');assert.ok(s.scores.girdhar['2']);assert.equal(s.finalized,true);assert.deepEqual(ranking(s,s.students).map(x=>x.id),['1']);assert.throws(()=>mutate(s,{type:'student-add',student:newcomer},roster));});
+test('last entry and finalized events cannot be deleted',()=>{const s=setup();s.students=[s.students[0]];assert.throws(()=>mutate(s,{type:'student-delete',id:'1'},roster));s.finalized=true;assert.throws(()=>mutate(s,{type:'student-update',student:roster[0]},roster));});
+test('new entries change required judging coverage',()=>{const s=setup();mutate(s,{type:'student-add',student:newcomer},roster);for(const j of s.judges){mutate(s,{type:'claim',id:j.id,token:j.id},roster);for(const entry of roster)mutate(s,{type:'score',id:j.id,token:j.id,student:entry.id,marks:[1,2,3,4,5,6,7]},roster);}assert.equal(s.finalized,false);});

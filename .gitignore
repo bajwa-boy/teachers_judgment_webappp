@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.local-data.json
+.local-data.json.tmp
+.preview-backup.json
+public/uploads/
+.integration-data.json*
+.integration-*.json*
+.browser-qa.json*
