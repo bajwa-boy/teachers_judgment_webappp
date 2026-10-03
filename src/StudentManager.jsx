@@ -10,7 +10,13 @@ export default function StudentManager({data,scores,onChanged}){
   if(data.students.some(s=>s.id!==editing&&s.roll.trim().toLowerCase()===form.roll.trim().toLowerCase()))throw Error('This roll number already has an entry.');
   const assets=[];
   if(!editing){if(!files.length||files.length>6)throw Error('Choose one to six PDF, PNG or JPEG posters.');if(files.some(f=>f.size>15*1024*1024))throw Error('Each poster must be 15 MB or smaller.');
-   for(const file of files){const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Content-Type':file.type||'application/octet-stream'},body:file});const asset=await r.json();if(!r.ok)throw Error(asset.error||'Upload failed.');assets.push(asset);}
+   for(const file of files){
+    const head=new Uint8Array(await file.slice(0,8).arrayBuffer());const type=String.fromCharCode(...head.slice(0,5))==='%PDF-'?'pdf':head.join(',')==='137,80,78,71,13,10,26,10'?'png':head[0]===255&&head[1]===216&&head[2]===255?'jpg':null;
+    if(!type)throw Error('Only PDF, PNG and JPEG posters are supported.');
+    const prepared=await api('admin/upload-url',{type,size:file.size});
+    if(prepared.direct){const r=await fetch(prepared.uploadUrl,{method:'PUT',headers:{'Content-Type':type==='pdf'?'application/pdf':type==='png'?'image/png':'image/jpeg'},body:file,signal:AbortSignal.timeout(120000)});if(!r.ok)throw Error('Poster upload failed. Please retry.');assets.push(prepared.asset);}
+    else {const r=await fetch('/api/admin/upload',{method:'POST',headers:{'Content-Type':file.type||'application/octet-stream'},body:file});const asset=await r.json();if(!r.ok)throw Error(asset.error||'Upload failed.');assets.push(asset);}
+   }
   }
   await api('admin/students',{operation:editing?'update':'add',student:{...form,...(editing?{id:editing}:{assets})}});
   await onChanged();setNotice(editing?'Student details updated.':'Entry added. Every judge will see this student.');reset();

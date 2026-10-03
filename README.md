@@ -46,3 +46,7 @@ Organisers can add students with 1–6 PDF/PNG/JPEG files, edit metadata, search
 `npm test` checks claims, score validation, overwrite behavior, final locking and ties. `npm run build` checks the production frontend build.
 
 No cloud project has been provisioned automatically. Cloud behavior must be verified after the Supabase project is configured.
+
+## Vercel deployment
+
+Import the GitHub repository. Keep the Vite framework preset, build command npm run build, and output directory dist. vercel.json routes API calls to api/index.mjs and /admin to the frontend. Set Production environment variables SUPABASE_URL, SUPABASE_SECRET_KEY, and ADMIN_PASSWORD using values from your local .env, then redeploy. Never prefix server secrets with VITE_ or commit .env. Admin sessions use signed, expiring cookies so another function instance can verify them. Cloud posters upload directly to Supabase using an admin-issued signed upload URL, bypassing Vercel request-body limits. The server validates file contents before adding the entry. Login attempt throttling is per function instance; use Vercel Firewall for additional protection if needed.
